@@ -1,0 +1,66 @@
+﻿@model IEnumerable<NetCore_Demo.Models.HierarchyViewModel>;
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div id="assets">
+    <h1>@ViewData["Title"]</h1>
+    <div id="assetsTable">
+        <table class="table table-condensed" id="catalogIndexTable">
+            <thead>
+                <th>
+                    Id
+                </th>
+                <th>
+                    First name
+                </th>
+                <th>
+                    Last name 
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Telephone Number
+                </th>
+                <th>
+                    Children
+                </th>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model)
+                {
+                    <tr class="assetRow">
+                        <td class="">
+                            <a asp-controller="Hierarchy" asp-action="Detail" asp-route-id="@asset.Id">Details</a>
+                        </td>
+                        <td class="">
+                            <p>@asset.FirstName</p>
+                        </td>
+                        <td class="">
+                            <p>@asset.LastName</p>
+                        </td>
+                        <td class="">
+                            <p>@asset.Address</p>
+                        </td>
+                        <td class="">
+                            <p>@asset.TelephoneNumber</p>
+                        </td>
+                        <td class="">
+                            <ul>
+                                @foreach (var child in asset.children)
+                                {
+                                    <li>@child.FirstName</li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
