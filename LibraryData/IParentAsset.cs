@@ -10,6 +10,7 @@ namespace LibraryData
         IEnumerable<Parent> GetAll();
         Parent GetById(int id);
         void Add(Parent parent);
+        void UpdateAddress(int id, string address);
         string GetFullName(int id);
         string GetAddress(int id);
         string GetTelephoneNumber(int id);

@@ -59,5 +59,13 @@ namespace LibraryServices
         {
             return _context.parents.FirstOrDefault(p => p.Id == id).TelephoneNumber;
         }
+
+        public void UpdateAddress(int id, string address)
+        {
+           var parent = GetById(id);
+            parent.Address = address;
+            _context.Update(parent);
+            _context.SaveChanges();
+        }
     }
 }

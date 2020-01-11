@@ -1,0 +1,19 @@
+﻿@model NetCore_Demo.Models.HierarchyDetailViewModel;
+@{
+    ViewData["Title"] = "Edit ";
+}
+
+
+
+<div>
+    <h1>@ViewData["Title"] @Model.FirstName @Model.LastName</h1>
+    <div id="assetsTable" class="col-md-9">
+        <form asp-action="EditParent" asp-controller="Hierarchy" method="post">
+            <input asp-for="Id" value="@Model.Id" hidden/>
+            <input asp-for="Address" value="@Model.Address" />
+            <button type="submit">Edit Address!</button>
+        </form>
+    </div>
+</div>
+
+

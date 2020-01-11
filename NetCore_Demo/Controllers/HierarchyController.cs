@@ -30,5 +30,42 @@ namespace NetCore_Demo.Controllers
             });
             return View(listingResult);
         }
+
+        public IActionResult Detail(int id)
+        {
+            var parent = _assets.GetById(id);
+            var listingResult = new HierarchyDetailViewModel
+            {
+                Id = parent.Id,
+                FirstName = parent.FirstName,
+                LastName = parent.LastName,
+                Address = parent.Address,
+                TelephoneNumber = parent.TelephoneNumber,
+                children = parent.Children
+            };
+            return View(listingResult);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var parent = _assets.GetById(id);
+            var listingResult = new HierarchyDetailViewModel
+            {
+                Id = parent.Id,
+                FirstName = parent.FirstName,
+                LastName = parent.LastName,
+                Address = parent.Address,
+                TelephoneNumber = parent.TelephoneNumber,
+                children = parent.Children
+            };
+            return View(listingResult);
+        }
+
+        [HttpPost]
+        public IActionResult EditParent(int id, string address)
+        {
+            _assets.UpdateAddress(id, address);
+            return RedirectToAction("Detail", new { id });
+        }
     }
 }
