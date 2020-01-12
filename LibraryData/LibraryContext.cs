@@ -1,10 +1,13 @@
 ﻿using LibraryData.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace LibraryData
 {
-    public class LibraryContext : DbContext
+
+    // IdentityDbContext allows you to have 1 dbcontext with 2 dbsets, one for roles & one for users
+    public class LibraryContext : IdentityDbContext
     {
 
         // ORM, Object Relational Mapping, code first. Migrates the classes to tables in database
