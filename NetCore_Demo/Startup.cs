@@ -40,7 +40,7 @@ namespace NetCore_Demo
             services.AddScoped<IParentAsset, ParentAssetService>();
             services.AddDbContext<LibraryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LibraryConnection")));
 
-            // adds support for basic token reset & maintenance functionality + registreert identity services, for manager in HomeController
+            // adds support for basic token reset & maintenance functionality + registreert identity services, for managers in UserController
             services.AddIdentity<IdentityUser, IdentityRole>(config =>
             {
                 config.Password.RequireDigit = false;
@@ -49,11 +49,13 @@ namespace NetCore_Demo
                 config.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<LibraryContext>()
                 .AddDefaultTokenProviders();
+            
 
+            // nodig om cookie bij te houden met login data na login async
             services.ConfigureApplicationCookie(config =>
             {
                 config.Cookie.Name = "User.identity";
-                config.LoginPath = "/Home/Login";
+                config.LoginPath = "/User/Login";
             });
         }
 
